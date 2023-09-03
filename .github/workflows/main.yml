@@ -1,0 +1,32 @@
+name: Build Image
+
+on:
+  push:
+    branches: ["main"]
+  schedule:
+    - cron: "0 0 * * SUN"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PKR_VAR_registry: ghcr.io
+      PKR_VAR_repository: ghcr.io/${{ github.repository }}
+      PKR_VAR_username: ${{ github.actor }}
+      PKR_VAR_password: ${{ secrets.GITHUB_TOKEN }}
+      PKR_VAR_vault_addr: ${{ secrets.VAULT_ADDR }}
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Initializes Packer
+        run: packer init .
+
+      - name: Validate packer configurations
+        run: packer validate -syntax-only .
+
+      - name: Run packer build
+        run: packer build -color=false -on-error=abort .
