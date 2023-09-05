@@ -54,7 +54,7 @@ build {
 
   provisioner "shell" {
     inline = [
-      "apk add --update --no-cache ansible curl git gnupg iptables jq make openssl openssh-client sshpass xorriso",
+      "apk add --update --no-cache ansible curl git gnupg iptables jq make openssl openssh-client rclone sshpass xorriso",
       "curl -sSL https://pkgs.tailscale.com/stable/tailscale_${local.tailscale_version}_amd64.tgz -o tailscale_${local.tailscale_version}_amd64.tgz",
       "curl -sSL https://github.com/getsops/sops/releases/download/v3.7.3/sops-v3.7.3.linux.amd64 -o sops",
       "curl -sSL https://releases.hashicorp.com/packer/${local.packer_version}/packer_${local.packer_version}_linux_amd64.zip -o packer_${local.packer_version}_linux_amd64.zip",

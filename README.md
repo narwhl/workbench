@@ -10,6 +10,7 @@ This repository builds a custom OCI image and push to Github's container registr
 - openssl
 - openssh-client
 - packer
+- rclone
 - sops
 - sshpass
 - tailscale
