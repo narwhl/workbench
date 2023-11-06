@@ -22,3 +22,21 @@ variable "password" {
 variable "vault_addr" {
   type = string
 }
+
+variable "packages" {
+  type = list(string)
+  default = [
+    "ansible",
+    "curl",
+    "git",
+    "gnupg",
+    "iptables",
+    "jq",
+    "make",
+    "openssl",
+    "openssh-client",
+    "rclone",
+    "sshpass",
+    "xorriso",
+  ]
+}
